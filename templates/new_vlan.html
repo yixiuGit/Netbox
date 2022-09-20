@@ -1,0 +1,66 @@
+{% extends "base_layout.html" %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">New VLAN Object Configuration</legend>
+                <div class="form-group">
+                    {{ form.api_attr.label(class="form-control-label") }}
+                    {{ form.api_attr(class="form-control form-control-lg") }}
+                </div>
+                <div class="form-group">
+                    {{ form.filter_key.label(class="form-control-label") }}
+                    {{ form.filter_key(class="form-control form-control-lg") }}
+                </div>
+                <div class="form-group">
+                    {{ form.filter_data.label(class="form-control-label") }}
+                    {% if form.filter_data.errors %}
+                        {{ form.filter_data(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.filter_data.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.filter_data(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.filter_key1.label(class="form-control-label") }}
+                    {{ form.filter_key1(class="form-control form-control-lg") }}
+                </div>
+                <div class="form-group">
+                    {{ form.filter_data1.label(class="form-control-label") }}
+                    {% if form.filter_data1.errors %}
+                        {{ form.filter_data1(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.filter_data1.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.filter_data1(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.input_data.label(class="form-control-label") }}
+                    {% if form.input_data.errors %}
+                        {{ form.input_data(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.input_data.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.input_data(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+{% endblock content %}
