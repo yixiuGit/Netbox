@@ -1,6 +1,6 @@
 from pathlib import Path
 import json
-from netboxGet import get_netbox_info
+from netboxGet import multi_objects_check, single_object_check
 import pynetbox
 
 file = Path('.').glob('menu.json')
@@ -79,6 +79,6 @@ print(filter_outcome)
 
 api_attr = f"{primay_attr}.{second_attr}"
 if len(filter_outcome) == 1:
-    get_netbox_info.single_object_check(api_attr, filter_outcome[0])
+    single_object_check(api_attr, filter_outcome[0])
 else:
-    get_netbox_info.multi_objects_check(api_attr, filter_outcome)
+    multi_objects_check(api_attr, filter_outcome)
