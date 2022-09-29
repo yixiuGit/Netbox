@@ -19,7 +19,7 @@ def multi_objects_check(api_attr, filter_data):
         if return_object is None:
             obj_notexist.append(return_object)
         else:
-            print(dict(list(return_object)[0]))
+            # print(dict(list(return_object)[0]))
             obj_exist.append(return_object)
     return obj_notexist, obj_exist
 
@@ -48,3 +48,39 @@ def single_object_check(api_attr, filter_data):
     else:
         print("object does not exist")
 
+def check_existing_request(api_attr, filter_data):
+    objExistList = []
+    objNotExistList = []
+    for obj in filter_data:
+        return_object = operator.attrgetter(api_attr)(nb).filter(**obj)
+        if return_object:
+            objExistList.append(obj)
+        else:
+            objNotExistList.append(obj)
+    return objExistList, objNotExistList
+
+
+#For updating object, need to check if objects were already exist.
+#If object already exist, collect "id" information and add to the update filter.
+def check_for_update_request(api_attr, filter_data):
+    objExistList = []
+    objNotExistList = []
+    for obj in filter_data:
+        return_object = operator.attrgetter(api_attr)(nb).filter(**obj)
+        if return_object:
+            obj['id']=dict(list(return_object)[0])['id']
+            objExistList.append(obj)
+        else:
+            objNotExistList.append(obj)
+    return objExistList, objNotExistList
+
+def check_for_delete_request(api_attr, filter_data):
+    objExistList = []
+    objNotExistList = []
+    for obj in filter_data:
+        return_object = operator.attrgetter(api_attr)(nb).filter(**obj)
+        if return_object:
+            objExistList.append(dict(list(return_object)[0])['id'])
+        else:
+            objNotExistList.append(obj)
+    return objExistList, objNotExistList
