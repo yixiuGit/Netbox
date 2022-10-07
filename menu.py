@@ -53,6 +53,11 @@ def filter_process(data, primay_attr, second_attr, continue_processing):
                 third_attr = ""
             filterData = input(f"\n\rPlease enter your data: ")
 
+            # Below if/else is to construct filter determined by if they are
+            # single dict single item {key:value}
+            # single dict multiple items {key1:v1, k2:v2, ...}
+            # single list multiple dict [{k1:v1},{k2:v2}...]
+
             if len(filter_list) == 0:
                 if third_attr != '':
                     filterDic.update({filter_attr:{third_attr:filterData}})
@@ -100,14 +105,10 @@ request_option = int(input("\n\rPlease select which action you want to take"
                            "\n\rPlease enter your selection here: "))
 
 primay_attr = menu(get_attr(data),"main_attr")
-print(primay_attr)
 
 second_attr = menu(get_attr(data[primay_attr]), "second_attr")
-print(second_attr)
-
 
 filter_outcome = filter_process(data, primay_attr, second_attr,"yes")
-print(filter_outcome)
 
 api_attr = f"{primay_attr}.{second_attr}"
 
