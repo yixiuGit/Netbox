@@ -11,3 +11,4 @@ So for CRUD, one method can cover all different API calls.
 Run "meun.py" under pycharm terminal, it will show you option menu for you to choose
 You can add as many parameters as you want.
 See the attached screenshot for reference.
+![menu] (./menu.PNG)
